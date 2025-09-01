@@ -102,72 +102,75 @@ try {
     </section>
 
     <section id="products" class="products-section">
-        <div class="section-header">
-            <div class="section-badge">
-                <i class="fas fa-star"></i>
-                <span>Sélection Premium</span>
-            </div>
-            <h2 class="section-title">Mes Indispensables Tech</h2>
-            <p class="section-description">
-                Plongez dans ma collection personnelle : une sélection rigoureuse de produits tech que j'utilise et <b>approuve au quotidien</b> pour leur qualité, performance et innovation.
-            </p>
-            <div class="product-search-bar">
-                <input type="text" id="productSearch" placeholder="Rechercher un produit..." aria-label="Rechercher des produits">
-                <button id="searchButton" aria-label="Lancer la recherche"><i class="fas fa-search"></i></button>
-            </div>
+    <div class="section-header">
+        <div class="section-badge">
+            <i class="fas fa-star"></i>
+            <span>Sélection Premium</span>
         </div>
+        <h2 class="section-title">Mes Indispensables Tech</h2>
+        <p class="section-description">
+            Plongez dans ma collection personnelle : une sélection rigoureuse de produits tech que j'utilise et <b>approuve au quotidien</b> pour leur qualité, performance et innovation.
+        </p>
+        <div class="product-search-bar">
+            <input type="text" id="productSearch" placeholder="Rechercher un produit..." aria-label="Rechercher des produits">
+            <button id="searchButton" aria-label="Lancer la recherche"><i class="fas fa-search"></i></button>
+        </div>
+    </div>
 
-        <div class="products-grid" id="productsGrid">
-            <?php if (isset($error)): ?>
-                <div class="error-message"><?php echo $error; ?></div>
-            <?php else: ?>
-                <?php foreach ($products as $product): 
-                    // Convertir les features JSON en tableau
-                    $features = json_decode($product['features'], true) ?? [];
-                    
-                    // Générer les étoiles
-                    $rating = floatval($product['rating']);
-                    $fullStars = floor($rating);
-                    $hasHalfStar = ($rating - $fullStars) >= 0.5;
-                ?>
-                    <div class="product-card" data-category="<?php echo htmlspecialchars($product['category']); ?>">
-                        <div class="product-image">
-    <img src="<?php echo htmlspecialchars($product['image_url']); ?>" alt="<?php echo htmlspecialchars($product['title']); ?>">
-</div>
-                        <div class="product-content">
-                            <h3 class="product-title"><?php echo htmlspecialchars($product['title']); ?></h3>
-                            <p class="product-description"><?php echo htmlspecialchars($product['description'] ?? ''); ?></p>
-                            <div class="product-features">
-                                <?php foreach ($features as $feature): ?>
-                                    <span class="feature-tag"><?php echo htmlspecialchars($feature); ?></span>
-                                <?php endforeach; ?>
-                            </div>
-                            <div class="product-rating">
-                                <div class="stars">
-                                    <?php for ($i = 0; $i < $fullStars; $i++): ?>
-                                        <i class="fas fa-star"></i>
-                                    <?php endfor; ?>
-                                    <?php if ($hasHalfStar): ?>
-                                        <i class="fas fa-star-half-alt"></i>
-                                    <?php endif; ?>
-                                    <?php for ($i = 0; $i < (5 - $fullStars - ($hasHalfStar ? 1 : 0)); $i++): ?>
-                                        <i class="far fa-star"></i>
-                                    <?php endfor; ?>
-                                </div>
-                                <span class="rating-text"><?php echo number_format($rating, 1); ?> sur 5</span>
-                            </div>
+    <div class="products-grid" id="productsGrid">
+        <?php if (isset($error)): ?>
+            <div class="error-message"><?php echo htmlspecialchars($error); ?></div>
+        <?php elseif (!empty($products)): ?>
+            <?php foreach ($products as $product): 
+                // Convertir les features JSON en tableau
+                $features = json_decode($product['features'], true) ?? [];
+                
+                // Générer les étoiles
+                $rating = floatval($product['rating']);
+                $fullStars = floor($rating);
+                $hasHalfStar = ($rating - $fullStars) >= 0.5;
+            ?>
+                <div class="product-card" data-category="<?php echo htmlspecialchars($product['category']); ?>">
+                    <div class="product-image">
+                        <img src="<?php echo htmlspecialchars($product['image_url']); ?>" alt="<?php echo htmlspecialchars($product['title']); ?>">
+                    </div>
+                    <div class="product-content">
+                        <h3 class="product-title"><?php echo htmlspecialchars($product['title']); ?></h3>
+                        <p class="product-description"><?php echo htmlspecialchars($product['description'] ?? ''); ?></p>
+                        <div class="product-features">
+                            <?php foreach ($features as $feature): ?>
+                                <span class="feature-tag"><?php echo htmlspecialchars($feature); ?></span>
+                            <?php endforeach; ?>
                         </div>
-                        <div class="product-action">
-                            <a href="<?php echo htmlspecialchars($product['amazon_link']); ?>" target="_blank" rel="noopener noreferrer" class="btn-product">
-                                <span>Voir sur Amazon</span>
-                                <i class="fas fa-external-link-alt"></i>
-                            </a>
+                        <div class="product-rating">
+                            <div class="stars">
+                                <?php for ($i = 0; $i < $fullStars; $i++): ?>
+                                    <i class="fas fa-star"></i>
+                                <?php endfor; ?>
+                                <?php if ($hasHalfStar): ?>
+                                    <i class="fas fa-star-half-alt"></i>
+                                <?php endif; ?>
+                                <?php for ($i = 0; $i < (5 - $fullStars - ($hasHalfStar ? 1 : 0)); $i++): ?>
+                                    <i class="far fa-star"></i>
+                                <?php endfor; ?>
+                            </div>
+                            <span class="rating-text"><?php echo number_format($rating, 1); ?> sur 5</span>
                         </div>
                     </div>
-                <?php endforeach; ?>
-            <?php endif; ?>
-        </div>
-    </section>
+                    <div class="product-action">
+                        <a href="<?php echo htmlspecialchars($product['amazon_link']); ?>" target="_blank" rel="noopener noreferrer" class="btn-product">
+                            <span>Voir sur Amazon</span>
+                            <i class="fas fa-external-link-alt"></i>
+                        </a>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+        <?php else: ?>
+            <p class="no-products">Aucun produit trouvé.</p>
+        <?php endif; ?>
+    </div>
+</section>
+
 
     <section id="about" class="about-section">
         <div class="about-content">
