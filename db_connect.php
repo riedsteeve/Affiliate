@@ -2,15 +2,19 @@
 $host = 'mes-recoms-bdynk-mysql.mes-recoms-bdynk.svc.cluster.local';
 $db   = 'mes-recoms';
 $user = 'steeve';
-$pass = 'mG4_dX4-rF5-lE9-cZ4='; // Remplace par ton mot de passe réel
+$pass = 'TON_MOT_DE_PASSE_ICI';
 
 try {
-    $pdo = new PDO("mysql:host=$host;dbname=$db;charset=utf8", $user, $pass);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $pdo = new PDO(
+        "mysql:host=$host;port=3306;dbname=$db;charset=utf8",
+        $user,
+        $pass,
+        [
+            PDO::ATTR_PERSISTENT => true, // connexion persistante
+            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
+        ]
+    );
 } catch (PDOException $e) {
-    die(json_encode([
-        'success' => false,
-        'message' => 'Erreur de connexion à la base : ' . $e->getMessage()
-    ]));
+    die("Erreur de connexion : " . $e->getMessage());
 }
 ?>
