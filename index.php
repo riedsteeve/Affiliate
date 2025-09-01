@@ -321,6 +321,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Vous devez remplacer 'votre_code_unique' par votre véritable code Formspree
             const formAction = 'https://formspree.io/f/xqadlyjj';
             
+                
             fetch(formAction, {
                 method: 'POST',
                 body: new FormData(e.target),
