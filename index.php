@@ -1,16 +1,16 @@
 <?php
-$host = 'mes-recoms-bdynk-mysql.mes-recoms-bdynk.svc.cluster.local';
-$db   = 'mes-recoms';
-$user = 'steeve';
-$pass = 'mG4_dX4-rF5-lE9-cZ4='; // remplace par le vrai mot de passe
+require_once 'db_connect.php'; // ta connexion PDO
 
 try {
-    $pdo = new PDO("mysql:host=$host;dbname=$db;charset=utf8", $user, $pass);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    // Récupération des produits
+    $stmt = $pdo->query("SELECT * FROM products ORDER BY id DESC");
+    $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 } catch (PDOException $e) {
-    die("Erreur de connexion : " . $e->getMessage());
+    $products = [];
+    $error = "Erreur lors de la récupération des produits : " . $e->getMessage();
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
