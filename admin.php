@@ -44,6 +44,7 @@ try {
     <link rel="icon" type="image/png" href="favicon.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/png" href="images/favs.png">
     <style>
         /* Styles spécifiques pour le tableau des produits */
         .products-table td:nth-child(2) img {
