@@ -23,7 +23,7 @@ try {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
     <meta name="description" content="Découvrez Mes Recommandations Tech : une sélection de produits testés et approuvés, alliant fiabilité, performance et meilleur rapport qualité-prix.">
-    <link rel="icon" type="images/fav.png" href="favicon.png">
+    <link rel="icon" type="image/png" href="images/favs.png">
 </head>
 
 <body data-theme="light">
