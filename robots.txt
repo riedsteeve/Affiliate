@@ -1,0 +1,5 @@
+User-agent: *
+Disallow: /admin/
+Allow: /
+
+Sitemap: https://steeve-recom-3f5au.sevalla.app/sitemap.xml
