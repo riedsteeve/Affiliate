@@ -24,6 +24,7 @@ try {
     <link rel="stylesheet" href="styles.css">
     <meta name="description" content="Découvrez Mes Recommandations Tech : une sélection de produits testés et approuvés, alliant fiabilité, performance et meilleur rapport qualité-prix.">
     <link rel="icon" type="image/png" href="images/favs.png">
+    <meta name="google-site-verification" content="QJGW_ZvOVZLWojU3JL_XG8Ml3qlgnOwU-jrCLzJzC-M" />
 </head>
 
 <body data-theme="light">
